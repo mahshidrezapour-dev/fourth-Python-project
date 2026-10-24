@@ -7,9 +7,30 @@
 # آخرش products رو چاپ کنی.
 def goods(name= None):
     if name is None:
-        name=input("name : ")
-    count = int(input("count:"))
-    price = int(input("price in Toomans >>>"))
+        name=input("name : ").strip()
+    else:
+        name=name.strip()
+    while not name:
+        print("product name cannot be empty")
+        name=name("name: " ).strip()
+    while True:
+        try:
+            count = int(input("count:"))
+            if count<0:
+                print("count cannot be negative ")
+            else:
+                break
+        except ValueError:
+            print("please enter a valid integer")
+    while True:
+        try:
+            price = int(input("price in Toomans >>>"))
+            if price <0:
+                print("price cannot be negative")
+            else:
+                break
+        except ValueError:
+            print("please enter a valid integer")
     products = {
         "name": name,
         "price": price,
@@ -20,18 +41,29 @@ def goods(name= None):
 
 list_of_products = {}
 # تعداد محصولات اولیه
-i = int(input("how many products exists ? >>>"))
+while True:
+    try:
+        i = int(input("how many products exists ? >>>"))
+        if i <0:
+            print("number of products cannot be negative")
+        else:
+            break
+    except ValueError:
+        print("please enter a valid integer")
 for number in range(i):
     thing = goods()
+    while thing["name"] in list_of_products:
+        print("this product already exists")
+        thing=good()
     list_of_products[thing["name"]] = thing
 print(list_of_products)
 
-# Menue
+print("menu: add , search , show products , exit")
 while True:
-    search = input("search here...")
+    search = input("search here...shoose from menu : ")
     # add
     if search.lower() == "add product":
-        product_name=input("enter the name of product to add :")
+        product_name=input("enter the name of product to add :").strip()
         if product_name in list_of_products:
             print("already exists")
         else:
@@ -41,9 +73,11 @@ while True:
         
 # search
     elif search.lower() == "search":
-        name = input("which product are you looking for ? ...")
+        name = input("which product are you looking for ? ...").strip()
         if name in list_of_products:
             print(list_of_products[name])
+        else:
+            print("not found")
 
     # show products
 
