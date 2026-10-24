@@ -12,7 +12,7 @@ def goods(name= None):
         name=name.strip()
     while not name:
         print("product name cannot be empty")
-        name=name("name: " ).strip()
+        name=input("name: " ).strip()
     while True:
         try:
             count = int(input("count:"))
@@ -54,7 +54,7 @@ for number in range(i):
     thing = goods()
     while thing["name"] in list_of_products:
         print("this product already exists")
-        thing=good()
+        thing=goods()
     list_of_products[thing["name"]] = thing
 print(list_of_products)
 
